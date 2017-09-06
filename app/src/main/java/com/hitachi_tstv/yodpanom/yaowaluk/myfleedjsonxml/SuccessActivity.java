@@ -1,5 +1,7 @@
 package com.hitachi_tstv.yodpanom.yaowaluk.myfleedjsonxml;
 
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -11,6 +13,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ImageSpan;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -36,6 +41,11 @@ public class SuccessActivity extends AppCompatActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
+    private int[] imageResId = {
+            R.drawable.ic_action_xml_icon,
+            R.drawable.ic_action_json_icon
+    };
+    private String tabTitles[] = new String[] { "XML", "JSON" };
     private String _username;
     private String _password;
 
@@ -131,15 +141,21 @@ public class SuccessActivity extends AppCompatActivity {
 
         @Override
         public CharSequence getPageTitle(int position) {
-            switch (position) {
-                case 0:
-                    return "XML";
-                case 1:
-                    return "JSON ";
-//                case 2:
-//                    return "SECTION 3";
+            Drawable image = getDrawable(imageResId[position]);
+            image.setBounds(0, 0, image.getIntrinsicWidth(), image.getIntrinsicHeight());
+            // Replace blank spaces with image icon
+            SpannableString sb = new SpannableString("   " + tabTitles[position]);
+            ImageSpan imageSpan = new ImageSpan(image, ImageSpan.ALIGN_BOTTOM);
+            sb.setSpan(imageSpan, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            return sb;
+
+        }
+        public Drawable getDrawable(int resource) {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+                return getResources().getDrawable(resource);
+            } else {
+                return getResources().getDrawable(resource, null);
             }
-            return null;
         }
     }
 }
