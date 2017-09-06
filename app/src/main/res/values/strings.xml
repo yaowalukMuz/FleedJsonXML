@@ -2,7 +2,7 @@
 <resources>
     <string name="title_facebook_login">Facebook Login</string>
     <string name="app_id">641494725973824</string>
-    <string name="app_name">CodeMobiles Training</string>
+    <string name="app_name">CodeMobiles Training.V3</string>
     <string name="authen_failed_title">Authentication Failed!</string>
     <string name="authen_failed_message">Your username or password have not been registered yet!, Do You Need to Register?</string>
     <string name="register_failed_title">Registration Failed</string>
