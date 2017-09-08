@@ -155,8 +155,10 @@ public class ListViewAdapter extends BaseAdapter {
 
                 @Override
                 public void onClick(View v) {
-                    final String youtubeID = v.getTag(R.id.item_listview_youtube_image).toString();
-                    Intent intent = YouTubeIntents.createPlayVideoIntentWithOptions(mContext, youtubeID, true, false);
+//                    final String youtubeID = v.getTag(R.id.item_listview_youtube_image).toString();
+//                    Intent intent = YouTubeIntents.createPlayVideoIntentWithOptions(mContext, youtubeID, true, false);
+//                    mContext.startActivity(intent);
+                    Intent intent = new Intent(mContext, DetailJobActivity.class);
                     mContext.startActivity(intent);
                 }
             });
